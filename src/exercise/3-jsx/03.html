@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    {{> head}}
+<head>
+  {{> head}}
 
-    <script
-      crossorigin
-      src="https://unpkg.com/react@18/umd/react.development.js"
-    ></script>
-    <script
-      crossorigin
-      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-    ></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  </head>
+  <script
+        crossorigin
+        src="https://unpkg.com/react@18/umd/react.development.js"
+  ></script>
+  <script
+        crossorigin
+        src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  ></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
 
-  <body>
-    <div id="root"></div>
-  </body>
+<body>
+<div id="root"></div>
+</body>
 
-  <!-- 💡 permet de faire comprendre a Babel qu'il doit compiler ce fichier -->
-  <script type="text/babel">
-    // 🦁 Remplace tout ceci par du JSX !
-    // 💡 <button id=...
-    const startButton = React.createElement(
-      'button',
-      {
-        id: 'start',
-        onClick: () => {
-          alert('Le bouton start à été cliqué !');
-        },
-      },
-      'Start'
+<!-- 💡 permet de faire comprendre a Babel qu'il doit compiler ce fichier -->
+<script type="text/babel">
+    const startButton = <button id="start" onClick={() => alert('Le bouton start à été cliqué !')}>Start !</button>;
+
+    const Message = ({
+        author = 'Default',
+        children,
+    }) => {
+        return <p><b>{author}</b> : {children}</p>;
+    };
+
+    const elements = (
+        <div className="elements">
+            <div>{startButton}</div>
+            <Message author="Loki">Hello comment ça va ?</Message>
+            <Message author="ikol">Bien Et toi</Message>
+            <Message>J'ai pas d'auteur</Message>
+            <h2>{Math.random()}</h2>
+            <p>{112 + 4}</p>
+            <span>{new Date().toDateString()}</span>
+        </div>
     );
-
-    // 🦁 Remplace tout ceci par du JSX !
-    // 💡 <div>...
-    const elements = React.createElement('div', null, startButton);
 
     const root = ReactDOM.createRoot(document.querySelector('#root'));
     root.render(elements);
-  </script>
+</script>
 </html>
