@@ -1,30 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    {{> head}}
+<head>
+  {{> head}}
 
-    <!-- ℹ️ Les scripts React pour qu'on puisse utiliser React.createElement -->
-    <script
-      crossorigin
-      src="https://unpkg.com/react@18/umd/react.development.js"
-    ></script>
-    <script
-      crossorigin
-      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-    ></script>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+  <!-- ℹ️ Les scripts React pour qu'on puisse utiliser React.createElement -->
+  <script
+        crossorigin
+        src="https://unpkg.com/react@18/umd/react.development.js"
+  ></script>
+  <script
+        crossorigin
+        src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  ></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
 
-  <script>
-    // 🦁 Crée un button avec comme id "start" et comme text à l'intérieur "Start !"
-    // 🦁 Ajoute une événement "onClick" à notre button qui affiche une alert.
+<script>
+    const startButton = React.createElement('button', {
+        id:      'start',
+        onClick: () => {
+            alert('Le bouton start a été cliqué');
+        },
+    }, 'Start !');
 
-    // 🦁 Crée une div : "elements" avec à l'intérieur le bouton.
+    const stopButton = React.createElement('button', {
+        id:      'stop',
+        onClick: () => {
+            alert('Le bouton stop a été cliqué');
+        },
+    }, 'Stop !');
+
+    const title = React.createElement('h1', null, 'Lance la partie');
+
+    const btnContainer = React.createElement('div', null, [startButton, stopButton]);
+
+    const fruits = ['pomme', 'poire', 'fraise', 'cerise'];
+    const listItems = fruits.map((item) => {
+        return React.createElement('li', null, item);
+    });
+    const list = React.createElement('ul', null, listItems);
+
+    const parent = React.createElement('div', null, [title, btnContainer, list]);
 
     const container = document.querySelector('#root');
-    const root = undefined; // 🦁 Remplace `undefined` by `ReactDOM.createRoot(container);`
-    // 🦁 Utilise `root.render` pour afficher la div "elements"
-  </script>
+    const root = ReactDOM.createRoot(container);
+    root.render(parent);
+</script>
 </html>
