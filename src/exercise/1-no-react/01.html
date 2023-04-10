@@ -21,10 +21,10 @@
         const button = document.createElement('button');
         button.innerText = initialValue || 0;
 
-        const incrementValue = (event) => {
-            const val = Number(event.target.innerText);
+        const incrementValue = () => {
+            const previousValue = Number(button.innerText);
 
-            event.target.innerText = val + 1;
+            button.innerText = previousValue + 1;
         };
 
         button.addEventListener('click', incrementValue);
