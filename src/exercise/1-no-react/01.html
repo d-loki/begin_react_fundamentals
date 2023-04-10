@@ -1,21 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    {{> head}}
-  </head>
-  <body>
-    <!-- 🦁 crée une div avec l'id "root" -->
-    <!-- ℹ️ presque toutes les app React ont une "root".
-         C'est le premier nœud de notre arbre. -->
-  </body>
+<head>
+  {{> head}}
+</head>
+<body>
+<div id="root"></div>
+</body>
 
-  <script>
-    // 🦁 crée une div
+<script>
+    const helloDiv = document.createElement('div');
+    helloDiv.textContent = 'Hello 👋';
 
-    // 🦁 ajoute le text "Hello 👋" dedans
+    const onClickDiv = () => {
+        alert('Tu as cliqué que la div');
+    };
 
-    // 🦁 récupère l'élément "root"
+    helloDiv.addEventListener('click', onClickDiv);
 
-    // 🦁 ajoute la div dans l'élément "root"
-  </script>
+    const Counter = (initialValue) => {
+        const button = document.createElement('button');
+        button.innerText = initialValue || 0;
+
+        const incrementValue = (event) => {
+            const val = Number(event.target.innerText);
+
+            event.target.innerText = val + 1;
+        };
+
+        button.addEventListener('click', incrementValue);
+        return button;
+    };
+
+    const fruits = ['banana', 'apple', 'strawberry'];
+    const legumes = ['carrot', 'tomato', 'potato'];
+    const List = (items) => {
+        const list = document.createElement('ul');
+
+        items.forEach(item => {
+            list.appendChild(Item(item));
+        });
+
+        return list;
+    };
+
+    const Item = (text) => {
+        const item = document.createElement('li');
+        item.innerText = text;
+
+        return item;
+    };
+
+    const root = document.querySelector('#root');
+
+    root.appendChild(helloDiv);
+
+    root.appendChild(Counter(0));
+    root.appendChild(Counter(-5));
+    root.appendChild(Counter(5));
+
+    root.appendChild(List(fruits));
+    root.appendChild(List(legumes));
+</script>
 </html>
